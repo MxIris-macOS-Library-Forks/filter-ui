@@ -264,53 +264,53 @@ extension FilterSearchField {
     return addFilterButton(image: image, alternateImage: alternateImage, toolTip: toolTip, accessibilityDescription: accessibilityDescription)
   }
 }
-
-import SwiftUI
-struct FilterSearchField_Previews: PreviewProvider {
-  static var previews: some View {
-    VStack {
-      NSViewPreview { FilterSearchField() }
-
-      NSViewPreview<FilterSearchField> { f in
-        f.placeholderString = "Custom Placeholder"
-      }
-
-      NSViewPreview<FilterSearchField> { f in
-        f.stringValue = "Lorem Ipsum"
-      }
-
-      NSViewPreview<FilterSearchField> { f in
-        f.addFilterButton(systemSymbolName: "clock", toolTip: "Show only recent items")
-        f.addFilterButton(systemSymbolName: "doc", toolTip: "Show only project-defined items")
-        //f.addFilterButton(systemSymbolName: "tag.square", toolTip: "Show only tagged items")
-        //f.addFilterButton(systemSymbolName: "square", toolTip: "")
-        //f.addFilterButton(systemSymbolName: "c.square", toolTip: "")
-      }
-
-      NSViewPreview<FilterSearchField> { f in
-        f.addFilterButton(symbolName: "clock.raster", toolTip: "Show only recent items")
-        f.addFilterButton(symbolName: "doc.raster", toolTip: "Show only project-defined items")
-        //f.addFilterButton(symbolName: "tag.raster", toolTip: "Show only tagged items")
-      }
-
-      NSViewPreview<FilterSearchField> { f in
-        f.stringValue = "Lorem Ipsum"
-        f.addFilterButton(symbolName: "clock.raster", toolTip: "").state = .on
-        f.addFilterButton(symbolName: "doc.raster", toolTip: "")
-      }
-
-      NSViewPreview<FilterSearchField> { f in
-        f.progress = FilterSearchField.indeterminateProgress
-      }
-
-      NSViewPreview<FilterSearchField> { f in
-        f.progress = 0
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
-          if let p = f.progress { f.progress = p >= 1 ? 0 : p + 0.05 }
-        }
-      }
-    }
-    .frame(maxWidth: 300)
-    .padding()
-  }
-}
+//
+//import SwiftUI
+//struct FilterSearchField_Previews: PreviewProvider {
+//  static var previews: some View {
+//    VStack {
+//      NSViewPreview { FilterSearchField() }
+//
+//      NSViewPreview<FilterSearchField> { f in
+//        f.placeholderString = "Custom Placeholder"
+//      }
+//
+//      NSViewPreview<FilterSearchField> { f in
+//        f.stringValue = "Lorem Ipsum"
+//      }
+//
+//      NSViewPreview<FilterSearchField> { f in
+//        f.addFilterButton(systemSymbolName: "clock", toolTip: "Show only recent items")
+//        f.addFilterButton(systemSymbolName: "doc", toolTip: "Show only project-defined items")
+//        //f.addFilterButton(systemSymbolName: "tag.square", toolTip: "Show only tagged items")
+//        //f.addFilterButton(systemSymbolName: "square", toolTip: "")
+//        //f.addFilterButton(systemSymbolName: "c.square", toolTip: "")
+//      }
+//
+//      NSViewPreview<FilterSearchField> { f in
+//        f.addFilterButton(symbolName: "clock.raster", toolTip: "Show only recent items")
+//        f.addFilterButton(symbolName: "doc.raster", toolTip: "Show only project-defined items")
+//        //f.addFilterButton(symbolName: "tag.raster", toolTip: "Show only tagged items")
+//      }
+//
+//      NSViewPreview<FilterSearchField> { f in
+//        f.stringValue = "Lorem Ipsum"
+//        f.addFilterButton(symbolName: "clock.raster", toolTip: "").state = .on
+//        f.addFilterButton(symbolName: "doc.raster", toolTip: "")
+//      }
+//
+//      NSViewPreview<FilterSearchField> { f in
+//        f.progress = FilterSearchField.indeterminateProgress
+//      }
+//
+//      NSViewPreview<FilterSearchField> { f in
+//        f.progress = 0
+//        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
+//          if let p = f.progress { f.progress = p >= 1 ? 0 : p + 0.05 }
+//        }
+//      }
+//    }
+//    .frame(maxWidth: 300)
+//    .padding()
+//  }
+//}
