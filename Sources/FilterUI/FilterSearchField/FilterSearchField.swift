@@ -84,13 +84,15 @@ open class ProgressIndicator: NSProgressIndicator {
             constant: (NSScreen.main?.backingScaleFactor ?? 1) < 2 ? -1 : 0
         )
 
+        let accessoryViewTrailingConstant: CGFloat = if #available(macOS 26.0, *) { -8 } else { -4 }
+        
         NSLayoutConstraint.activate([
             progressIndicator.widthAnchor.constraint(equalToConstant: 16),
             progressIndicator.heightAnchor.constraint(equalToConstant: 16),
             progressIndicator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
             progressIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
 
-            accessoryView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
+            accessoryView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: accessoryViewTrailingConstant),
             accessoryViewCenterYConstraint,
             // accessoryView.topAnchor.constraint(equalTo: topAnchor, constant: 3),
             // _accessoryView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -1),
@@ -180,7 +182,7 @@ open class ProgressIndicator: NSProgressIndicator {
     open var filterButtons = [NSButton]()
 
     @discardableResult
-    open func addFilterButton(image: NSImage, alternateImage: NSImage, toolTip: String, accessibilityDescription: String? = nil) -> NSButton {
+    open func addFilterButton(image: NSImage?, alternateImage: NSImage?, toolTip: String, accessibilityDescription: String? = nil) -> NSButton {
         // print(image.size)
         // let imageSize = 16
         // image.size = NSSize(width: imageSize, height: imageSize)
@@ -224,14 +226,12 @@ open class ProgressIndicator: NSProgressIndicator {
     }
 
     @discardableResult
-    open func addFilterButton(systemSymbolName: String, toolTip: String, accessibilityDescription: String? = nil) -> NSButton {
+    open func addFilterButton(systemSymbolName: String, toolTip: String, accessibilityDescription: String? = nil, symbolConfiguration: NSImage.SymbolConfiguration = .init(pointSize: 16, weight: .regular, scale: .small)) -> NSButton {
         // FIXME: make the point size behave like in SwiftUI somehow
 
-        let image = (NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: nil) ?? NSImage())
-            .withSymbolConfiguration(.init(pointSize: 16, weight: .regular, scale: .small))!
+        let image = NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: nil)?.withSymbolConfiguration(symbolConfiguration)
 
-        let alternateImage = (NSImage(systemSymbolName: systemSymbolName + ".fill", accessibilityDescription: nil) ?? image)
-            .withSymbolConfiguration(.init(pointSize: 16, weight: .regular, scale: .small))!
+        let alternateImage = (NSImage(systemSymbolName: systemSymbolName + ".fill", accessibilityDescription: nil) ?? image)?.withSymbolConfiguration(symbolConfiguration)
 
         return addFilterButton(image: image, alternateImage: alternateImage, toolTip: toolTip, accessibilityDescription: accessibilityDescription)
     }

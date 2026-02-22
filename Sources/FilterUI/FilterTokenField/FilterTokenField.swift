@@ -95,8 +95,6 @@ import Combine
         .store(in: &subscriptions)
 
         objectValueDidChange()
-
-        self.recentFilterValues = ["aaaA", "aaaaaa", "aaa"]
     }
 
     @available(*, unavailable)
