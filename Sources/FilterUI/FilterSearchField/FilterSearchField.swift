@@ -231,7 +231,7 @@ open class ProgressIndicator: NSProgressIndicator {
 
         let image = NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: nil)?.withSymbolConfiguration(symbolConfiguration)
 
-        let alternateImage = (NSImage(systemSymbolName: systemSymbolName + ".fill", accessibilityDescription: nil) ?? image)?.withSymbolConfiguration(symbolConfiguration)
+        let alternateImage = (NSImage(systemSymbolName: systemSymbolName + ".fill", accessibilityDescription: nil) ?? image)?.withSymbolConfiguration(symbolConfiguration.applying(.init(pointSize: 16, weight: .semibold, scale: .small)))
 
         return addFilterButton(image: image, alternateImage: alternateImage, toolTip: toolTip, accessibilityDescription: accessibilityDescription)
     }
